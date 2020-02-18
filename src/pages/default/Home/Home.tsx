@@ -46,7 +46,7 @@ const Home = (props: Props, state: State) => {
         let scrollHeight = document.documentElement.scrollHeight;
         let body = document.body;
 
-        if (scrollTop + clientHeight === scrollHeight) {
+        if (scrollTop + clientHeight >= scrollHeight) {
             body.style.overflow = 'hidden'
             const title = searchTitle
             let page = pageNumber + 1
