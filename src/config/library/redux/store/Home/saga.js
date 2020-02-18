@@ -6,12 +6,14 @@ import * as apiFavorite from 'services/api/Favorite';
 
 function* getMask(action, payload) {
     try{
+        let body = document.body;
         const result = yield call(api.getMaskApi, { title: action.payload.title, page: action.payload.page });
         if (result.data.items !== 0) {
             yield put(actions.getMaskSuccess({
                 list: result.data.items
             }))
             yield put(actions.IsLoading(false))
+            yield body.style.overflow = ''
         } else {
             yield put(actions.IsLoading(false))
         }

@@ -31,7 +31,7 @@ const Home = (props: Props, state: State) => {
     useEffect(() => {
         return () => {
             window.removeEventListener('scroll', someFunction)
-            window.removeEventListener('touch', someFunction)
+            // window.removeEventListener('touchend', someFunction)
         }
     });
 
@@ -44,8 +44,10 @@ const Home = (props: Props, state: State) => {
         let scrollTop = document.documentElement.scrollTop;
         let clientHeight = document.documentElement.clientHeight;
         let scrollHeight = document.documentElement.scrollHeight;
+        let body = document.body;
 
-        if (scrollTop + clientHeight >= scrollHeight) {
+        if (scrollTop + clientHeight === scrollHeight) {
+            body.style.overflow = 'hidden'
             const title = searchTitle
             let page = pageNumber + 1
             dispatch(changePage(page))
@@ -55,7 +57,7 @@ const Home = (props: Props, state: State) => {
     }
 
     window.addEventListener('scroll', someFunction);
-    window.addEventListener('touch', someFunction)
+    // window.addEventListener('touchend', someFunction)
 
     return(
         <CardContainer>
