@@ -7,21 +7,16 @@ interface Props {
     className?: string,
     onChange: any,
     onKeyDown: any
-    value: string,
-    iscurrent: any
+    value: string
 }
 
 interface State {}
 
-interface MyStyle {
-    iscurrent: any
-}
-
 const Search = (props: Props, state: State) => {
-    const { className, onChange, onKeyDown, value, iscurrent} = props;
+    const { className, onChange, onKeyDown, value} = props;
 
     return(
-        <SearchRoot className={className} iscurrent={!iscurrent}>
+        <SearchRoot className={className}>
             <Icon className="icon-search-24px"></Icon>
             <Input type="text" placeholder="搜尋" onChange={onChange} onKeyDown={onKeyDown} value={value}/>
         </SearchRoot>
@@ -33,19 +28,14 @@ export default Search;
 const SearchRoot = styled.div`
     display: flex;
     width: 290px;
-    max-width: calc(100% - 30px);
     align-items: center;
     border-radius: 8px;
     background-color: #ddd;
     padding: 12px 20px;
 
     @media ${screen.sm} {
-        margin-top: 30px;
+        width: 100%
     }
-
-    ${(props: MyStyle) => props.iscurrent && css`
-        display: none
-    `};
 `;
 
 const Icon = styled.span`

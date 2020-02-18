@@ -8,12 +8,18 @@ import Navbar from 'resources/components/atoms/Navbar';
 import Search from 'resources/components/atoms/Search';
 import Button from 'resources/components/atoms/Button';
 
+import screen from 'resources/theme/Screen';
+
 import { getMaskRequest, IsLoading, enterMask, createSearch, changePage } from 'config/library/redux/store/Home/action';
 import { getFavoriteRequest } from 'config/library/redux/store/Favorite/action';
 
 interface Props { }
 
-interface State {}
+interface State { }
+
+interface MyStyle {
+    iscurrent: any
+}
 
 const App = (props: Props, state: State) => {
     const [SearchTitle, setSearch] = useState('');
@@ -51,8 +57,8 @@ const App = (props: Props, state: State) => {
     return(
         <HashRouter>
             <Navbar onClick={handleActive} iscurrent={active}/>
-            <SearchRoot>
-                <Search onChange={handleSearch} value={SearchTitle} onKeyDown={handleEnter} iscurrent={active} />
+            <SearchRoot iscurrent={!active}>
+                <Search onChange={handleSearch} value={SearchTitle} onKeyDown={handleEnter} />
                 <Button onClick={handleEnter}>搜尋</Button>
             </SearchRoot>
             <Router/>
@@ -66,4 +72,15 @@ const SearchRoot = styled.div`
     display: flex;
     justify-content: center;
     margin: 40px auto 20px auto;
+    max-width: calc(100% - 30px);
+
+    @media ${screen.sm} {
+        margin: 30px auto 15px auto;
+        flex-direction: column;
+    }
+
+
+    ${(props: MyStyle) => props.iscurrent && css`
+        display: none
+    `};
 `;

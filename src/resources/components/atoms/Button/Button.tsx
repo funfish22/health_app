@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import screen from 'resources/theme/Screen';
+
 interface Props {
     children: string,
     className?: string,
@@ -30,6 +32,11 @@ const ButtonRoot = styled.div`
     font-weight: bold;
     color: #38B2A9;
     margin: 0 5px;
+    text-align: center;
+
+    @media ${screen.sm} {
+        margin: 5px 0;
+    }
 
     &:hover{
         background-color: #2d958e;
