@@ -47,12 +47,16 @@ const Card = (props: Props, state: State) => {
                 </CardTitleRoot>
                 <CardInfoRoot>
                     <CardDes>{info.description}</CardDes>
-                    {!isCurrent && (
-                        <CardFavorite onClick={onFavorite}>加入收藏</CardFavorite>
-                    )}
-                    {onUnFavorite && (
-                        <CardFavorite onClick={onUnFavorite}>取消收藏</CardFavorite>
-                    )}
+                    <CardFooter>
+                        <CardLink href={info.html_url} target="_black">前往github頁面</CardLink>
+                        {!isCurrent && (
+                            <CardFavorite onClick={onFavorite}>加入收藏</CardFavorite>
+                        )}
+                        {onUnFavorite && (
+                            <CardFavorite onClick={onUnFavorite}>取消收藏</CardFavorite>
+                        )}
+                    </CardFooter>
+                    
                 </CardInfoRoot>
             </CardHref>
         </CardRoot>
@@ -80,7 +84,8 @@ const CardRoot = styled.li`
     }
 
     @media ${screen.sm} {
-        width: 100%
+        width: 100%;
+        margin: 10px 15px;
     }
 `;
 
@@ -94,26 +99,47 @@ const CardTitleRoot = styled.a`
     padding: 20px;
     background-color: #38B2A9;
     color: #fff;
+    word-break: break-all;
+
+    @media ${screen.sm} {
+        padding: 15px;
+    }
 `;
 
 const CardTitle = styled.p`
     font-size: 24px;
     margin-bottom: 5px;
+
+    @media ${screen.lg} {
+        font-size: 18px;
+    }
 `;
 
 const CardLanguage = styled.p`
     font-size: 20px;
     min-height: 30px;
     margin-bottom: 5px;
+
+    @media ${screen.lg} {
+        font-size: 15px;
+    }
 `;
 
 const CardStar = styled.span`
     color: #f1e05a;
+
+    @media ${screen.lg} {
+        font-size: 12px;
+    }
 `;
 
 const CardMIT = styled.span`
     display: inline-block;
     margin-left: 10px;
+
+    @media ${screen.lg} {
+        font-size: 12px;
+    }
 `;
 
 const CardInfoRoot = styled.div`
@@ -121,15 +147,22 @@ const CardInfoRoot = styled.div`
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    @media ${screen.sm} {
+        padding: 15px;
+    }
 `;
 
 const CardDes = styled.p`
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+
+    @media ${screen.lg} {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
 `;
 
 const CardFavorite = styled.button`
-    margin-top: auto;
-    margin-left: auto;
     background-color: #38B2A9;
     color: #fff;
     padding: 10px 12px;
@@ -137,8 +170,47 @@ const CardFavorite = styled.button`
     font-size: 14px;
     cursor: pointer;
     transition: .5s;
+    font-weight: bold;
+
+    @media ${screen.lg} {
+        font-size: 12px;
+    }
+
+    @media ${screen.sm} {
+        padding: 8px 10px;
+    }
 
     &:hover{
         background-color: #2d958e;
     }
+`;
+
+const CardLink = styled.a`
+    margin-right: 8px;
+    background-color: #38B2A9;
+    color: #fff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: bold;
+
+    @media ${screen.lg} {
+        font-size: 12px;
+    }
+
+    @media ${screen.sm} {
+        padding: 8px 10px;
+    }
+
+    &:hover{
+        background-color: #2d958e;
+    }
+`;
+
+const CardFooter = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
 `;

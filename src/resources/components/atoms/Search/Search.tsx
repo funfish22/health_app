@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, {css} from 'styled-components';
 
+import screen from 'resources/theme/Screen';
+
 interface Props {
     className?: string,
     onChange: any,
@@ -36,7 +38,11 @@ const SearchRoot = styled.div`
     border-radius: 8px;
     background-color: #ddd;
     padding: 12px 20px;
-    margin: 20px auto;
+    margin: 40px auto 20px auto;
+
+    @media ${screen.sm} {
+        margin-top: 30px;
+    }
 
     ${(props: MyStyle) => props.iscurrent && css`
         display: none
