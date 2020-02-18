@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { HashRouter, BrowserRouter} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import styled, { css } from 'styled-components';
 
 import Router from './Router';
 import Navbar from 'resources/components/atoms/Navbar';
 import Search from 'resources/components/atoms/Search';
+import Button from 'resources/components/atoms/Button';
 
 import { getMaskRequest, IsLoading, enterMask, createSearch, changePage } from 'config/library/redux/store/Home/action';
 import { getFavoriteRequest } from 'config/library/redux/store/Favorite/action';
@@ -27,10 +29,15 @@ const App = (props: Props, state: State) => {
     }
 
     const handleEnter = (e: any) => {
-        const title = e.target.value
+        const title = SearchTitle
 
-        if (e.keyCode === 13) {
+        if (e.keyCode === 13 || e.button === 0) {
             const page = 1
+
+            if (title.trim() === '') {
+                alert('請輸入文字')
+                return
+            }
 
             dispatch(IsLoading(true))
             dispatch(enterMask())
@@ -44,10 +51,19 @@ const App = (props: Props, state: State) => {
     return(
         <HashRouter>
             <Navbar onClick={handleActive} iscurrent={active}/>
-            <Search onChange={handleSearch} value={SearchTitle} onKeyDown={handleEnter} iscurrent={active}/>
+            <SearchRoot>
+                <Search onChange={handleSearch} value={SearchTitle} onKeyDown={handleEnter} iscurrent={active} />
+                <Button onClick={handleEnter}>搜尋</Button>
+            </SearchRoot>
             <Router/>
         </HashRouter>
     )
 }
 
 export default App;
+
+const SearchRoot = styled.div`
+    display: flex;
+    justify-content: center;
+    margin: 40px auto 20px auto;
+`;

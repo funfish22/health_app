@@ -38,7 +38,6 @@ const SearchRoot = styled.div`
     border-radius: 8px;
     background-color: #ddd;
     padding: 12px 20px;
-    margin: 40px auto 20px auto;
 
     @media ${screen.sm} {
         margin-top: 30px;
