@@ -163,6 +163,7 @@ const CardDes = styled.p`
 `;
 
 const CardFavorite = styled.button`
+    margin-left: 8px;
     background-color: #38B2A9;
     color: #fff;
     padding: 10px 12px;
@@ -186,7 +187,6 @@ const CardFavorite = styled.button`
 `;
 
 const CardLink = styled.a`
-    margin-right: 8px;
     background-color: #38B2A9;
     color: #fff;
     padding: 10px 12px;
