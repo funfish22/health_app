@@ -5,5 +5,5 @@ export const getMaskApi = ({title, page}) => {
 };
 
 export const createFavorite = (info) => {
-    return axios.post('https://morning-atoll-00255.herokuapp.com/api/lists/add', { data: info})
+    return axios.post('https://thawing-inlet-37368.herokuapp.com/api/lists/add', { data: info})
 }
