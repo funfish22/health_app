@@ -31,6 +31,7 @@ const Home = (props: Props, state: State) => {
     useEffect(() => {
         return () => {
             window.removeEventListener('scroll', someFunction)
+            window.removeEventListener('touch', someFunction)
         }
     });
 
@@ -54,6 +55,7 @@ const Home = (props: Props, state: State) => {
     }
 
     window.addEventListener('scroll', someFunction);
+    window.addEventListener('touch', someFunction)
 
     return(
         <CardContainer>
