@@ -25,7 +25,7 @@ const Home = (props: Props, state: State) => {
 
     const list = useSelector((state: State) => state.Home.list);
     const isLoading = useSelector((state: State) => state.Home.isLoading);
-    const searchTitle = useSelector((state: State) => state.Home.search)
+    const searchTitle = useSelector((state: State) => state.Home.search);
     const pageNumber = useSelector((state: State) => state.Home.page);
 
     useEffect(() => {
@@ -41,17 +41,22 @@ const Home = (props: Props, state: State) => {
     }
 
     const someFunction = () => {
-        let scrollTop = document.documentElement.scrollTop;
-        let clientHeight = document.documentElement.clientHeight;
-        let scrollHeight = document.documentElement.scrollHeight;
+        let scrollTop = window.scrollY;
+        let clientHeight = window.innerHeight;
+        let scrollHeight = document.body.scrollHeight;
         let body = document.body;
+        if (isLoading) return
 
-        if (scrollTop + clientHeight >= scrollHeight) {
+        console.log('isLoading', isLoading)
+        console.log('scrollTop + clientHeight', scrollTop + clientHeight)
+        console.log('scrollHeight', scrollHeight)
+        if (scrollTop + clientHeight >= scrollHeight - 50) {
             body.style.overflow = 'hidden'
             const title = searchTitle
-            let page = pageNumber + 1
-            dispatch(changePage(page))
             dispatch(IsLoading(true))
+
+            const page = pageNumber + 1
+            dispatch(changePage(page))
             dispatch(getMaskRequest({ title, page }))
         }
     }
